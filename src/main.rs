@@ -465,7 +465,6 @@ fn tokenize_expr(input: String) -> Option<Vec<String>> {
                 if in_parentheses > 0 {
                     in_parentheses -= 1;
                 } else {
-                    eprintln!("Error! there's duplicate end of the parentheses");
                     return None;
                 }
             }
@@ -489,11 +488,9 @@ fn tokenize_expr(input: String) -> Option<Vec<String>> {
 
     // Syntax error check
     if in_quote {
-        eprintln!("Error! there's not end of the quote");
         return None;
     }
     if in_parentheses != 0 {
-        eprintln!("Error! there's not end of the parentheses");
         return None;
     }
 
@@ -522,7 +519,6 @@ fn tokenize_args(input: String) -> Option<Vec<String>> {
                 if in_parentheses > 0 {
                     in_parentheses -= 1;
                 } else {
-                    eprintln!("Error! there's duplicate end of the parentheses");
                     return None;
                 }
             }
@@ -546,11 +542,9 @@ fn tokenize_args(input: String) -> Option<Vec<String>> {
 
     // Syntax error check
     if in_quote {
-        eprintln!("Error! there's not end of the quote");
         return None;
     }
     if in_parentheses != 0 {
-        eprintln!("Error! there's not end of the parentheses");
         return None;
     }
 
