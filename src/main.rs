@@ -13,7 +13,6 @@ fn main() {
 
         if code == "run" {
             engine.run_program();
-            println!("Okay")
         } else if {
             let code = code.split_once(" ").unwrap_or_default();
             code.0.parse::<usize>().is_ok() && !code.1.is_empty()
@@ -23,7 +22,7 @@ fn main() {
             } else {
                 if let Some(expr) = parse_expr(code) {
                     if let Some(result) = expr.eval(&mut engine.scope) {
-                        println!(" {}", result.display(&mut engine.scope));
+                        println!("{}", result.display(&mut engine.scope));
                     } else {
                         println!("i");
                     }
@@ -34,14 +33,13 @@ fn main() {
         } else {
             if let Some(ast) = parse_opecode(code.clone()) {
                 if engine.run_opecode(ast).is_some() {
-                    println!("Okay");
                 } else {
                     println!("Error");
                 }
             } else {
                 if let Some(expr) = parse_expr(code) {
                     if let Some(result) = expr.eval(&mut engine.scope) {
-                        println!(" {}", result.display(&mut engine.scope));
+                        println!("{}", result.display(&mut engine.scope));
                     } else {
                         println!("Error");
                     }
@@ -93,7 +91,7 @@ impl Engine {
 
     fn run_opecode(&mut self, code: Statement) -> Option<bool> {
         match code {
-            Statement::Print(expr) => println!(" {}", expr.eval(&mut self.scope)?.get_string()),
+            Statement::Print(expr) => println!("{}", expr.eval(&mut self.scope)?.get_string()),
             Statement::Let(name, expr) => {
                 self.scope.insert(name, expr.eval(&mut self.scope.clone())?);
             }
